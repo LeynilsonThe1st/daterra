@@ -154,7 +154,7 @@
         quis, et repudiandae dolorem maiores nulla fugiat placeat.</p>
       <div class="cartao sem-borda mt-40">
         <div class="cartao-conteudo p-0">
-          <form action="#" class="formulario">
+          <form action="http://localhost:8000/api" method="POST" class="formulario" id="calc">
             <div class="campo-em-linha">
               <div class="campo mb-0">
                 <select name="moeda1" id="moeda1">
@@ -176,13 +176,33 @@
                 </select>
               </div>
               <div class="campo mb-0 medio">
-                <input type="number" name="preco_produto" id="valor" min="1" placeholder="Preço do produto">
+                <input type="number" name="preco" id="valor" min="1" placeholder="Preço do produto">
               </div>
               <div class="campo mv-0 pequeno">
-                <input type="submit" class="botao preto" value="Calcular">
+                <input type="submit" class="botao preto" id="calcular" value="calcular">
               </div>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-layer" id="modal">
+      <div class="linha">
+        <div class="eight colunas centered collapsed">
+          <div class="cartao branco sem-borda sem-bordas-internas">
+            <div class="cartao-header pb-0">
+              <h1 class="titulo m-0">resultado</h1>
+            </div>
+            <div class="cartao-conteudo">
+              <p class="grande">Aqui vai o resultado do cálculo</p>
+              <p class="texto-alt" id="resultado">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint odit eaque distinctio a. Sequi, inventore! Voluptatum at minima blanditiis molestias! Molestiae vel amet omnis perferendis, facilis minima nihil et obcaecati.
+              </p>
+            </div>
+            <div class="cartao-footer">
+              <button class="botao pequeno m-0 vermelho" id="fechar-modal">fechar</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -262,7 +282,12 @@
             </div>
           </div>
         </div>
+
       </div>
+      <div id="loader">
+        <img src="/img/loader.svg" class="svg big spin" alt="loader">
+      </div>
+      <button class="botao primario mt-60" id="ver-servicos">veja mais serviços</button>
     </div>
   </section>
 
@@ -330,6 +355,7 @@
     </div>
   </footer>
 
+  <script src="js/ajax.js"></script>
   <script src="js/site.js"></script>
 </body>
 

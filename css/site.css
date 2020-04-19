@@ -46,7 +46,7 @@ section {padding: 100px 0}
   transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .font-24 {font-size: 24px !important}
-.srvcs {gap: 60px 20px}
+.srvcs {gap: 60px 20px;margin-bottom: 100px;position: relative}
 .srvcs .cartao {
   -webkit-transition: .2s ease-in-out;
   transition: .2s ease-in-out;
@@ -62,6 +62,17 @@ section {padding: 100px 0}
   -webkit-transform: skew(0deg, 0deg) translate(0px, 40px);
           transform: skew(0deg, 0deg) translate(0px, 40px);
   box-shadow:10px 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+#loader {
+  /* position: absolute; */
+  display: none;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
 }
 .borda-left {border-left: 1px solid var(--cinza)}
 .section-hint {font-family: 'helvetica'; line-height: 1.5}
@@ -125,7 +136,74 @@ a[title="Twitter"]:focus {color: var(--azul)}
 .texto-primario-escuro {color: var(--primario-escuro)}
 #botao-menu {padding: 3px 5px 0px 5px;visibility: hidden}
 #botao-menu.transparente {background-color:transparent;border-color:transparent;color:inherit}
-.footer {padding-top: 40px;}
+.footer {padding-top: 40px}
+
+.modal-layer {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(27, 28, 29, 0.898);
+  transition: all 0.2s ease-in;
+}
+
+.modal-layer.on {
+  opacity: 1;
+  /* display: flex !important; */
+}
+
+
+#preloader {
+  display: flex;
+  align-items: center;
+}
+
+.svg:not(.big) {
+  width: 20px;
+  height: auto;
+}
+
+.svg.big {
+  width: 5em;
+  height: auto;
+  object-fit: contain;
+}
+
+.spin {
+  -webkit-animation: spin 1s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: spin 1s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 @media only screen and (max-width: 900px) {
   nav.menu.show-menu {border-bottom: 4px solid currentColor !important}
   nav.menu .menu-container {
@@ -157,6 +235,7 @@ a[title="Twitter"]:focus {color: var(--azul)}
            align-items: flex-start;
    overflow: hidden;
   }
+  .modal-layer .eight.colunas{width:90%}
   #botao-menu {visibility: visible}
   .four.crt {width: 50%;padding-bottom: 40px}
   .five.cts {width: 50%;padding-bottom: 40px}
@@ -185,6 +264,7 @@ a[title="Twitter"]:focus {color: var(--azul)}
   .five.cts {width: 100%;padding-bottom: 40px}
   .subscrever label {margin-bottom: 20px}
   .grelha {grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))}
+  .modal-layer .eight.colunas{width:100%}
 }
 @media only screen and (max-width: 690px) {
   .titulo.grande {font-size: 3em}
