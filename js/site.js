@@ -33,7 +33,13 @@ const ocultarModal = modal => {
         modal.style.display = "none";
     }, 200);
 };
-
+/**
+ * Adciona o loader no elemento especificado
+ * se nenhum elemento for inserido, vai inserir no elemento #pacotes
+ *
+ * @param {string} el - id do elemento a colocar o loader
+ * @param {string} txt - texto adicional do loader
+ */
 const addLoader = (el = "#pacotes", txt = "os pacotes") => {
     if (!document.querySelector("#Ploader")) {
         var preloaderHTML = `
@@ -104,10 +110,9 @@ window.addEventListener("load", () => {
 
         let form = document.querySelector("#calc"); // Formulario calcular
         ajaxRequest(form); // Faz o request para o servidor usando Ajax
-
-        // fecha o modal se o usuario clicar no "#fechar-modal"
     });
 
+    // fecha o modal se o usuario clicar no "#fechar-modal"
     botaoFecharModal.forEach(btnFechar => {
         btnFechar.addEventListener("click", e => {
             if (e.target.type == "reset") ocultarModal(modalServico);
@@ -130,39 +135,53 @@ window.addEventListener("load", () => {
     botaoSolicitarServico.forEach(btnServico => {
         btnServico.addEventListener("click", e => {
             e.preventDefault();
-            addLoader();
+            addLoader(); // add o loader quando o modal abrir
 
+            // cartão do servico selecionado
             let cartaoDoservico =
                     e.target.parentNode.parentNode.parentNode.parentNode,
-                imgDoServico = cartaoDoservico.querySelector("img"),
-                tituloDoservico = cartaoDoservico.querySelector("h3"),
-                modalImg = document.querySelector("#servico-img"),
-                modalTitulo = document.querySelector("#servico-nome"),
-                modalPacotes = document.querySelector("#pacote");
+                imgDoServico = cartaoDoservico.querySelector("img"), // img do servico
+                tituloDoservico = cartaoDoservico.querySelector("h3"), // titulo do servico
+                modalImg = document.querySelector("#servico-img"), // img do modal
+                modalTitulo = document.querySelector("#servico-nome"), // titulo do modal
+                modalPacotes = document.querySelector("#pacote"); // o select do modal
 
+
+            // modalImg recebe a img do servico clicado
             modalImg.src = imgDoServico.src;
+            // modalTitulo recebe o titulo do servico clicado
             modalTitulo.innerText = tituloDoservico.innerText;
+            // codServico recebe o valor do input[type="hidden"]
             let codServiso = e.target.previousElementSibling.value;
+            // adiciona o codigo do servico no input[type="hidden"] do modal
             modalPacotes.previousElementSibling.value = codServiso;
+
+            // este loop serve para eliminar os options da solicitação anterior
             var len = modalPacotes.length;
             while (len > 1) {
                 modalPacotes.children.item(len - 1).remove();
                 len--;
             }
+            // esconde o select para mostrar apenas quando os pacotes forem carregados
             modalPacotes.style.display = "none";
             document.querySelector("#msg").innerHTML = " ";
             revelarModal(modalServico);
 
+            // faz o request dos pacotes
             ajaxRequest(e.target.form, response => {
+                // função que recebe os pacotes do servico
                 servicosHandler(response.target.response, modalPacotes);
             });
         });
     });
 
+    // botão para fazer a solicitação do servico
+    // Este botão esta dentro do modal
     botaoSolicitar.addEventListener("click", e => {
         e.preventDefault();
-        addLoader("#msg", "o seu pedido")
+        addLoader("#msg", "o seu pedido"); // add o loader quando o botão for clicado
         ajaxRequest(e.target.form, response => {
+            // função que recebe a resposta do servidor
             solicitacaoHandler(response.target.response);
         });
     });
