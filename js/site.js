@@ -14,16 +14,53 @@ const trocarCorMenu = (navMenu, remover, adicionar) => {
 };
 const revelarModal = modal => {
     modal.style.display = "flex";
-    setTimeout( () => {
+    setTimeout(() => {
         modal.classList.add("on");
     }, 200);
+    // fecha o modal e o usuario clicar fora dele
+    modal.addEventListener("click", e => {
+        if (e.target.classList[0] == "modal-layer" ||
+            e.target.parentNode.classList[0] == "modal-layer"
+        ) {
+            ocultarModal(modal);
+        }
+    });
 };
 const ocultarModal = modal => {
     modal.classList.remove("on");
-    setTimeout( () => {
+    setTimeout(() => {
         modal.style.display = "none";
     }, 200);
 };
+
+const addLoader = () => {
+    if (!document.querySelector("#Ploader")) {
+        var preloaderHTML = `
+            <div id="Ploader">
+                <span class="texto-forte mr-15">A carregar os pacotes</span>
+                <img src="/img/loader.svg" class="svg spin" alt="loader">
+            </div>`;
+        document.querySelector("#pacotes").innerHTML += preloaderHTML;
+    }
+};
+const removeLoader = () => {
+    var preloader = document.querySelector("#Ploader");
+    if (preloader) {
+        preloader.remove();
+    }
+};
+const ajaxResponse = (response, pacotes) => {
+    var c = pacotes.lenght;
+    var options = [];
+    for (let pacote of response.pacotes) {
+        let option = `<option value="${c}">${pacote}</option>`
+        pacotes.innerHTML += option;
+        options.push(option);
+    }
+    removeLoader();
+    pacotes.style.display = "block";
+
+}
 
 // executa o codigo abaixo apenas quando o DOM carregar
 // Sem esperar pelo css e imagens
@@ -31,9 +68,11 @@ window.addEventListener("load", () => {
     let botaoMenu = document.querySelector("#botao-menu"), // botão para abrir e fechar
         links = document.querySelectorAll(".menu-links a.link"), // array com os links no menu
         modal = document.querySelector("#modal"), // O modal
-        botaoFecharModal = document.querySelector("#fechar-modal"), // botao para fechar o modal
+        modalServico = document.querySelector("#modal-servico"), // O modal
+        botaoFecharModal = document.querySelectorAll(".fechar-modal"), // botao para fechar o modal
         botaoCalcular = document.querySelector("#calcular"),
         botaoVerServicos = document.querySelector("#ver-servicos"),
+        botaoSolicitarServico = document.querySelectorAll(".solicitar-servico"),
         menu = document.querySelector(".menu");
 
     // Revela e oculta os links do menu
@@ -59,13 +98,14 @@ window.addEventListener("load", () => {
         ajaxRequest(form); // Faz o request para o servidor usando Ajax
 
         // fecha o modal se o usuario clicar no "#fechar-modal"
-        botaoFecharModal.addEventListener("click", () => ocultarModal(modal));
+
     });
 
-    // fecha o modal e o usuario clicar fora dele
-    modal.addEventListener("click", e => {
-        if (e.target.id == "modal" || e.target.parentNode.id == "modal")
-            ocultarModal(modal);
+    botaoFecharModal.forEach(btnFechar => {
+        btnFechar.addEventListener("click", e => {
+            if (e.target.type == "reset") ocultarModal(modalServico);
+            else ocultarModal(modal);
+        });
     });
 
     botaoVerServicos.addEventListener("click", () => {
@@ -78,8 +118,42 @@ window.addEventListener("load", () => {
             srvcs.style.display = "grid";
             loader.style.display = "none";
         }, 5000);
-        // console.log(hs);
     });
+
+    botaoSolicitarServico.forEach(btnServico => {
+        btnServico.addEventListener("click", e => {
+            e.preventDefault();
+            addLoader();
+            let cartaoDoservico =
+                    e.target.parentNode.parentNode.parentNode.parentNode,
+                imgDoServico = cartaoDoservico.querySelector("img"),
+                tituloDoservico = cartaoDoservico.querySelector("h3"),
+                modalImg = document.querySelector("#servico-img"),
+                modalTitulo = document.querySelector("#servico-nome"),
+                modalPacotes = document.querySelector("#pacote");
+
+            modalImg.src = imgDoServico.src;
+            modalTitulo.innerText = tituloDoservico.innerText;
+            var len = modalPacotes.length,
+                c = 0;
+            while (len > 1) {
+                console.log(modalPacotes.options);
+                modalPacotes.children.item(len - 1).remove();
+                if (c > 3) {
+                    console.log(c);
+                    break;
+                }
+                c++;
+            }
+            modalPacotes.style.display = "none"
+            revelarModal(modalServico);
+
+            ajaxRequest(e.target.form, response => {
+                ajaxResponse(response.target.response, modalPacotes);
+            });
+        });
+    });
+
 });
 window.addEventListener("scroll", () => {
     let nav = document.querySelector(".menu"),
@@ -87,14 +161,15 @@ window.addEventListener("scroll", () => {
         header = document.querySelector("header"),
         servicos = document.querySelector("#servicos"),
         calculadora = document.querySelector("#calculadora"),
-        menu = document.querySelector(".menu"),
+        comentarios = document.querySelector("#sec-comentarios"),
         windowPos = window.scrollY,
         servicosTop = servicos.offsetTop - 75,
-        calculadoraTop = calculadora.offsetTop - 75;
+        calculadoraTop = calculadora.offsetTop - 75,
+        comentariosTop = comentarios.offsetTop - 75;
 
     if (
         windowPos >= activador.offsetTop - 75 &&
-        !menu.classList.contains("show-menu")
+        !nav.classList.contains("show-menu")
     ) {
         nav.style.opacity = 0;
     } else {
@@ -112,10 +187,17 @@ window.addEventListener("scroll", () => {
         } else {
             nav.classList.remove("primario-escuro", "texto-branco");
         }
+
         if (windowPos >= servicosTop) {
             trocarCorMenu(nav, "preto-fusco", ["bg-light"]);
         } else {
             nav.classList.remove("bg-light");
+        }
+
+        if (windowPos >= comentariosTop) {
+            trocarCorMenu(nav, "bg-light", ["branco"]);
+        } else {
+            nav.classList.remove("branco");
         }
     } else {
         trocarCorMenu(nav, "preto-fusco", ["branco"]);

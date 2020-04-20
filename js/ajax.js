@@ -18,23 +18,27 @@ const removePreloader = () => {
 };
 const sucesso = response => {
     console.log(response);
-    document.querySelector("#resultado").innerHTML = response.texto;
+    // document.querySelector("#resultado").innerHTML = response.texto;
 };
-const ajaxRequest = oFormElement => {
+const ajaxRequest = (oFormElement, callback = null) => {
     if (!oFormElement.action) {
         return;
     }
     var oReq = new XMLHttpRequest();
-    oReq.onreadystatechange = () => {
-        if (oReq.readyState == 4 && oReq.status == 200) {
-            sucesso(oReq.response);
-            removePreloader();
-        } else if (oReq.readyState == 4 && oReq.status == 304) {
-            removePreloader();
-        } else {
-            addPreloader();
-        }
-    };
+    if (typeof callback == "function") {
+        oReq.onload = callback;
+    } else {
+        oReq.onreadystatechange = () => {
+            if (oReq.readyState == 4 && oReq.status == 200) {
+                sucesso(oReq.response);
+                removePreloader();
+            } else if (oReq.readyState == 4 && oReq.status == 304) {
+                removePreloader();
+            } else {
+                addPreloader();
+            }
+        };
+    }
     if (oFormElement.method.toLowerCase() === "post") {
         oReq.open("post", oFormElement.action);
         oReq.responseType = "json";
@@ -58,10 +62,10 @@ const ajaxRequest = oFormElement => {
                     nFile = 0;
                     nFile < oField.files.length;
                     sSearch +=
-                    "&" +
-                    escape(oField.name) +
-                    "=" +
-                    escape(oField.files[nFile++].name)
+                        "&" +
+                        escape(oField.name) +
+                        "=" +
+                        escape(oField.files[nFile++].name)
                 );
             } else if (
                 (sFieldType !== "RADIO" && sFieldType !== "CHECKBOX") ||

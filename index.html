@@ -15,9 +15,15 @@
     <nav class="menu fixo branco">
       <div class="menu-container">
         <div class="horizontal">
-          <a class="link marca texto-primario-escuro" href="/">DaTerra</a>
+          <a class="link marca" href="/">DaTerra</a>
           <button class="botao transparente" id="botao-menu">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-menu">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
           </button>
         </div>
         <div class="menu-links">
@@ -58,7 +64,7 @@
         quo ipsam quis, et repudiandae dolorem maiores nulla fugiat placeat.</p>
 
       <div class="grelha mt-40 pt-20">
-        <div class="cartao branco  sem-borda">
+        <div class="cartao branco sem-borda">
           <div class="horizontal">
             <div class="cartao-conteudo texto-centro p-0">
               <div class="cartao-header ph-0 pv-20 mb-20">
@@ -78,7 +84,7 @@
             </div>
           </div>
         </div>
-        <div class="cartao branco  sem-borda">
+        <div class="cartao branco sem-borda">
           <div class="horizontal">
             <div class="cartao-conteudo texto-centro p-0">
               <div class="cartao-header ph-0 pv-20 mb-20">
@@ -98,10 +104,7 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="grelha pv-20">
-        <div class="cartao branco  sem-borda">
+        <div class="cartao branco sem-borda">
           <div class="horizontal">
             <div class="cartao-conteudo texto-centro p-0">
               <div class="cartao-header ph-0 pv-20 mb-20">
@@ -121,7 +124,7 @@
             </div>
           </div>
         </div>
-        <div class="cartao branco  sem-borda">
+        <div class="cartao branco sem-borda">
           <div class="horizontal">
             <div class="cartao-conteudo texto-centro p-0">
               <div class="cartao-header ph-0 pv-20 mb-20">
@@ -154,7 +157,7 @@
         quis, et repudiandae dolorem maiores nulla fugiat placeat.</p>
       <div class="cartao sem-borda mt-40">
         <div class="cartao-conteudo p-0">
-          <form action="http://localhost:8000/api" method="POST" class="formulario" id="calc">
+          <form action="http://localhost:8000/api/servicos.php" method="POST" class="formulario" id="calc">
             <div class="campo-em-linha">
               <div class="campo mb-0">
                 <select name="moeda1" id="moeda1">
@@ -196,11 +199,13 @@
             <div class="cartao-conteudo">
               <p class="grande">Aqui vai o resultado do cálculo</p>
               <p class="texto-alt" id="resultado">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint odit eaque distinctio a. Sequi, inventore! Voluptatum at minima blanditiis molestias! Molestiae vel amet omnis perferendis, facilis minima nihil et obcaecati.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint odit eaque distinctio a. Sequi, inventore!
+                Voluptatum at minima blanditiis molestias! Molestiae vel amet omnis perferendis, facilis minima nihil et
+                obcaecati.
               </p>
             </div>
             <div class="cartao-footer">
-              <button class="botao pequeno m-0 vermelho" id="fechar-modal">fechar</button>
+              <button class="botao pequeno m-0 vermelho fechar-modal" id="btn-close">fechar</button>
             </div>
           </div>
         </div>
@@ -218,12 +223,20 @@
 
         <div class="cartao com-imagem  branco">
           <div class="cartao-imagem flex flex-3 align-v-center pr-0">
-            <img src="img/img1.JPG" class="cartao-img" alt="img">
+            <img src="img/img1.jpg" class="cartao-img" alt="img">
           </div>
           <div class="card-content flex-9">
             <div class="cartao-conteudo">
               <h3 class="cartao-titulo">Carregamento Net Teller</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo culpa ipsa accusantium debitis.</p>
+            </div>
+            <div class="cartao-footer sem-borda pt-0">
+              <form action="http://localhost:8000/api/servicos.php" method="POST">
+                <input type="hidden" name="cod-servico" value="6">
+                <button class="botao daterra m-0 pequeno solicitar-servico">
+                  Solicitar serviços
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -236,6 +249,14 @@
               <h3 class="cartao-titulo">Compras Online</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo culpa ipsa accusantium debitis.</p>
             </div>
+            <div class="cartao-footer sem-borda pt-0">
+              <form action="http://localhost:8000/api/servicos.php" method="POST">
+                <input type="hidden" name="cod-servico" value="2">
+                <button class="botao daterra m-0 pequeno solicitar-servico">
+                  Solicitar serviços
+                </button>
+              </form>
+            </div>
           </div>
         </div>
         <div class="cartao com-imagem  branco">
@@ -246,6 +267,14 @@
             <div class="cartao-conteudo">
               <h3 class="cartao-titulo">Pagamento Netflix</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo culpa ipsa accusantium debitis.</p>
+            </div>
+            <div class="cartao-footer sem-borda pt-0">
+              <form action="http://localhost:8000/api/servicos.php" method="POST">
+                <input type="hidden" name="cod-servico" value="3">
+                <button class="botao daterra m-0 pequeno solicitar-servico">
+                  Solicitar serviços
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -258,6 +287,14 @@
               <h3 class="cartao-titulo">Gift Cards Variados</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo culpa ipsa accusantium debitis.</p>
             </div>
+            <div class="cartao-footer sem-borda pt-0">
+              <form action="http://localhost:8000/api/servicos.php" method="POST">
+                <input type="hidden" name="cod-servico" value="4">
+                <button class="botao daterra m-0 pequeno solicitar-servico">
+                  Solicitar serviços
+                </button>
+              </form>
+            </div>
           </div>
         </div>
         <div class="cartao com-imagem  branco">
@@ -268,6 +305,14 @@
             <div class="cartao-conteudo">
               <h3 class="cartao-titulo">Pagamento de dívidas online em dólar e euro</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo culpa ipsa accusantium debitis.</p>
+            </div>
+            <div class="cartao-footer sem-borda pt-0">
+              <form action="http://localhost:8000/api/servicos.php" method="POST">
+                <input type="hidden" name="cod-servico" value="5">
+                <button class="botao daterra m-0 pequeno solicitar-servico">
+                  Solicitar serviços
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -280,6 +325,14 @@
               <h3 class="cartao-titulo">Carregamento Net Teller</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo culpa ipsa accusantium debitis.</p>
             </div>
+            <div class="cartao-footer sem-borda pt-0">
+              <form action="http://localhost:8000/api/servicos.php" method="POST">
+                <input type="hidden" name="cod-servico" value="6">
+                <button class="botao daterra m-0 pequeno solicitar-servico">
+                  Solicitar serviços
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
@@ -287,7 +340,168 @@
       <div id="loader">
         <img src="/img/loader.svg" class="svg big spin" alt="loader">
       </div>
-      <button class="botao primario mt-60" id="ver-servicos">veja mais serviços</button>
+      <button class="botao primario-escuro mt-60" id="ver-servicos">veja mais serviços</button>
+    </div>
+    <div class="modal-layer" id="modal-servico">
+      <div class="linha">
+        <div class="eight colunas centered collapsed">
+          <div class="cartao com-imagem  branco">
+            <div class="cartao-imagem flex flex-3 align-v-center pr-0">
+              <img src="#" class="cartao-img" id="servico-img" alt="img">
+            </div>
+            <div class="card-content flex-9">
+              <div class="cartao-conteudo">
+                <h3 class="cartao-titulo" id="servico-nome"></h3>
+                <form action="http://localhost:8000" class="pt-20" method="POST">
+
+                  <div class="campo-em-linha">
+                    <div class="campo">
+                      <input type="text" name="nome" id="nome" placeholder="Seu Nome">
+                    </div>
+                    <div class="campo">
+                      <input type="email" name="email" id="email" placeholder="Exemplo@email.com">
+                    </div>
+                  </div>
+                  <div class="campo" id="pacotes">
+                    <select name="pacote" id="pacote">
+                      <option value="">Seleccione o pacote do serviço</option>
+                    </select>
+                  </div>
+                  <div class="campo">
+                    <textarea name="descricao" id="descricao" rows="5"
+                      placeholder="Uma pequena descrição do serviço que deseja obter">
+                    </textarea>
+                  </div>
+                  <button class="botao daterra" id="solicitar">Solicitar</button>
+                  <button type="reset" class="botao vermelho fechar-modal">cancelar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="branco" id="sec-comentarios">
+    <div class="linha ph-20">
+      <h1 class="titulo">Comentários</h1>
+      <p class="texto-alt texto-magro section-hint">
+        Partilhe a sua opinião acerca dos nossos serviços. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Natus deleniti adipisci iste blanditiis hic dicta mollitia culpa, necessitatibus ad at exercitationem maxime
+        possimus nostrum quidem. Perspiciatis enim asperiores officiis suscipit.
+      </p>
+      <div id="comentarios">
+        <div class="grelha mv-40">
+
+          <div class="cartao branco sem-bordas-internas">
+            <div class="cartao-header">
+              <div class="horizontal">
+                <img src="img/user.JPG" class="user-img mr-20" alt="user-img">
+                <h3 class="cartao-titulo mv-0">João Lorenço</h3>
+              </div>
+            </div>
+            <div class="cartao-conteudo">
+              <p class="texto-alt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tenetur dolore ipsa eos dolorum nisi
+                ducimus praesentium atque impedit officia.
+              </p>
+            </div>
+          </div>
+          <div class="cartao branco sem-bordas-internas">
+            <div class="cartao-header">
+              <div class="horizontal">
+                <img src="img/user.JPG" class="user-img mr-20" alt="user-img">
+                <h3 class="cartao-titulo mv-0">João Lorenço</h3>
+              </div>
+            </div>
+            <div class="cartao-conteudo">
+              <p class="texto-alt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime fugiat facilis libero atque omnis
+                itaque.
+              </p>
+            </div>
+          </div>
+          <div class="cartao branco sem-bordas-internas">
+            <div class="cartao-header">
+              <div class="horizontal">
+                <img src="img/user.JPG" class="user-img mr-20" alt="user-img">
+                <h3 class="cartao-titulo mv-0">João Lorenço</h3>
+              </div>
+            </div>
+            <div class="cartao-conteudo">
+              <p class="texto-alt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, laboriosam! Dolores impedit porro
+                doloremque maiores tempora eaque, ducimus voluptates dolorum error illum quod beatae voluptatibus,
+                distinctio mollitia enim itaque saepe.
+              </p>
+            </div>
+          </div>
+          <div class="cartao branco sem-bordas-internas">
+            <div class="cartao-header">
+              <div class="horizontal">
+                <img src="img/user.JPG" class="user-img mr-20" alt="user-img">
+                <h3 class="cartao-titulo mv-0">João Lorenço</h3>
+              </div>
+            </div>
+            <div class="cartao-conteudo">
+              <p class="texto-alt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tenetur dolore ipsa eos dolorum nisi
+                ducimus praesentium atque impedit officia.
+              </p>
+            </div>
+          </div>
+          <div class="cartao branco sem-bordas-internas">
+            <div class="cartao-header">
+              <div class="horizontal">
+                <img src="img/user.JPG" class="user-img mr-20" alt="user-img">
+                <h3 class="cartao-titulo mv-0">João Lorenço</h3>
+              </div>
+            </div>
+            <div class="cartao-conteudo">
+              <p class="texto-alt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime fugiat facilis libero atque omnis
+                itaque.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <form action="#" class="mt-60" method="post" id="coment-form">
+        <div class="linha mh-0">
+          <div class="eight colunas collapsed">
+            <div class="cartao branco sem-bordas-internas">
+              <div class="cartao-header">
+                <h2 class="subtitulo m-0">
+                  Deixe também o seu comentario
+                </h2>
+              </div>
+              <div class="cartao-conteudo">
+                <div class="campo-em-linha">
+                  <div class="campo">
+                    <input type="text" name="nome" id="user-nome" placeholder="Seu nome">
+                  </div>
+                  <div class="campo">
+                    <select name="clf" id="clf">
+                      <option value="0">Classificação</option>
+                      <option value="1">Muito Mau</option>
+                      <option value="2">Mau</option>
+                      <option value="3">razoavel</option>
+                      <option value="4">Bom</option>
+                      <option value="5">Muito Bom</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="campo">
+                  <textarea name="comentario" id="comentario" rows="8" placeholder="Seu comentário"></textarea>
+                </div>
+                <button class="botao daterra">comentar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -313,7 +527,7 @@
       <div class="three colunas rds">
         <p class="grande texto-branco texto-forte mt-0">Redes Sociais</p>
         <div class="btn-group">
-          <a href="#" class="botao primario fb"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          <a href="#" class="botao primario-escuro fb"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
               viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round" class="feather feather-facebook">
               <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
@@ -333,7 +547,7 @@
               <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
             </svg></a>
         </div>
-        <!-- <a href="#" class="botao primario pequeno font-24 mt-0">↑</a> -->
+        <!-- <a href="#" class="botao daterra pequeno font-24 mt-0">↑</a> -->
       </div>
     </div>
     <div class="subscrever preto pv-40">
@@ -343,7 +557,8 @@
             <div class="campo-em-linha">
               <label class="font-24 texto-branco v-centro mr-20" for="email">Inscreva-se Já</label>
               <div class="campo mb-0 newsletter">
-                <input type="email" name="email" id="email" placeholder="Esteja actualizado acerca dos nossos serviços">
+                <input type="email" name="email" id="Sub-email"
+                  placeholder="Esteja actualizado acerca dos nossos serviços">
               </div>
               <div class="campo pequeno mv-0">
                 <input type="submit" value="enviar" class="botao block dark">

@@ -5,6 +5,28 @@
   overflow: hidden;
   position: relative;
 }
+#cambio .grelha,
+#comentarios .grelha {
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr))
+}
+.user-img {
+  width: 40px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 50%;
+}
+#sec-comentarios .cartao {
+  border: none;
+  border-left: 4px solid var(--primario-escuro);
+  border-radius: 0px !important;
+}
+
+#comentarios .cartao:nth-of-type(3n) {
+  grid-column: 1 / -1;
+}
+.dizer {
+  line-height: 1.5;
+}
 #servicos {padding-bottom: 150px}
 .titulo.grande {font-size: 3.5em}
 .menu-links {
@@ -132,12 +154,27 @@ a[title="Twitter"]:focus {color: var(--azul)}
   border-color: var(--primario-escuro);
   color: var(--branco);
 }
+.botao.datera {background-color:var(--light);border-color:var(--light);color:var(--preto)}
+.botao.daterra:hover, .botao.daterra:focus{
+  background-color: var(--primario-escuro);
+  border-color: var(--primario-escuro);
+  color: var(--branco);
+}
+.botao.primario-escuro {
+  background-color: var(--primario-escuro);
+  border-color: var(--primario-escuro);
+  color: var(--branco);
+}
+.botao.primario-escuro:hover, .botao.daterra:focus{
+  background-color: var(--primario);
+  border-color: var(--primario);
+  color: var(--branco);
+}
 .subscrever {border-top: 4px solid var(--primario-escuro)}
-.texto-primario-escuro {color: var(--primario-escuro)}
+.texto-primario-escuro {color: var(--primario-escuro) !important}
 #botao-menu {padding: 3px 5px 0px 5px;visibility: hidden}
 #botao-menu.transparente {background-color:transparent;border-color:transparent;color:inherit}
 .footer {padding-top: 40px}
-
 .modal-layer {
   top: 0px;
   left: 0px;
@@ -158,6 +195,9 @@ a[title="Twitter"]:focus {color: var(--azul)}
   /* display: flex !important; */
 }
 
+#modal-servico button[type="reset"] {
+  float: right;
+}
 
 #preloader {
   display: flex;

@@ -12,6 +12,7 @@
   --light:            rgb(240, 239, 239);
 
   --branco:           rgb(255, 255, 255);
+  --branco-alt:       rgb(252, 252, 252);
   --cinza:            rgb(208, 209, 208);
   --cinza-escuro:     rgb(188, 189, 188);
   --preto:            rgb(27, 28, 29);
@@ -73,7 +74,7 @@ body{position:relative;overflow-x:hidden}
 
 /* hovers */
 
-.branco .item:focus,.branco .item:hover,.botao.branco:focus,.botao.branco:hover{background-color:var(--light);border-color:var(--light);color:var(--preto)}.light .item:focus,.light .item:hover,.botao.light:focus,.botao.light:hover{background-color:var(--cinza);border-color:var(--cinza);color:var(--preto)}.preto .item:focus,.preto .item:hover,.botao.preto:focus,.botao.preto:hover{background-color:var(--preto-fusco);border-color:var(--preto-fusco);color:var(--branco)}.positivo .item:focus,.positivo .item:hover,.botao.positivo:focus,.botao.positivo:hover{background-color:var(--positivo-escuro);border-color:var(--positivo-escuro)}.negativo .item:focus,.negativo .item:hover,.botao.negativo:focus,.botao.negativo:hover{background-color:var(--negativo-escuro);border-color:var(--negativo-escuro)}.primario .item:focus,.primario .item:hover,.botao.primario:focus,.botao.primario:hover{background-color:var(--primario-escuro);border-color:var(--primario-escuro)}.secundario .item:focus,.secundario .item:hover,.botao.secundario:focus,.botao.secundario:hover{background-color:var(--secundario-escuro);border-color:var(--secundario-escuro);color:var(--preto)}.vermelho .item:focus,.vermelho .item:hover,.botao.vermelho:focus,.botao.vermelho:hover{background-color:var(--vermelho-escuro);border-color:var(--vermelho-escuro)}.laranja .item:focus,.laranja .item:hover,.botao.laranja:focus,.botao.laranja:hover{background-color:var(--laranja-escuro);border-color:var(--laranja-escuro)}.amarelo .item:focus,.amarelo .item:hover,.botao.amarelo:focus,.botao.amarelo:hover{background-color:var(--amarelo-escuro);border-color:var(--amarelo-escuro)}.verde .item:focus,.verde .item:hover,.botao.verde:focus,.botao.verde:hover{background-color:var(--verde-escuro);border-color:var(--verde-escuro)}.azul .item:focus,.azul .item:hover,.botao.azul:focus,.botao.azul:hover{background-color:var(--azul-escuro);border-color:var(--azul-escuro)}.roxo .item:focus,.roxo .item:hover,.botao.roxo:focus,.botao.roxo:hover{background-color:var(--roxo-escuro);border-color:var(--roxo-escuro)}.rosa .item:focus,.rosa .item:hover,.botao.rosa:focus,.botao.rosa:hover{background-color:var(--rosa-escuro);border-color:var(--rosa-escuro)}.cinza .item:focus,.cinza .item:hover,.botao.cinza:focus,.botao.cinza:hover{background-color:var(--cinza-escuro);border-color:var(--cinza-escuro);color:var(--preto)}
+.branco .item:focus,.branco .item:hover,.botao.branco:focus,.botao.branco:hover{background-color:var(--branco-alt);border-color:var(--branco-alt);color:var(--preto)}.light .item:focus,.light .item:hover,.botao.light:focus,.botao.light:hover{background-color:var(--cinza);border-color:var(--cinza);color:var(--preto)}.preto .item:focus,.preto .item:hover,.botao.preto:focus,.botao.preto:hover{background-color:var(--preto-fusco);border-color:var(--preto-fusco);color:var(--branco)}.positivo .item:focus,.positivo .item:hover,.botao.positivo:focus,.botao.positivo:hover{background-color:var(--positivo-escuro);border-color:var(--positivo-escuro)}.negativo .item:focus,.negativo .item:hover,.botao.negativo:focus,.botao.negativo:hover{background-color:var(--negativo-escuro);border-color:var(--negativo-escuro)}.primario .item:focus,.primario .item:hover,.botao.primario:focus,.botao.primario:hover{background-color:var(--primario-escuro);border-color:var(--primario-escuro)}.secundario .item:focus,.secundario .item:hover,.botao.secundario:focus,.botao.secundario:hover{background-color:var(--secundario-escuro);border-color:var(--secundario-escuro);color:var(--preto)}.vermelho .item:focus,.vermelho .item:hover,.botao.vermelho:focus,.botao.vermelho:hover{background-color:var(--vermelho-escuro);border-color:var(--vermelho-escuro)}.laranja .item:focus,.laranja .item:hover,.botao.laranja:focus,.botao.laranja:hover{background-color:var(--laranja-escuro);border-color:var(--laranja-escuro)}.amarelo .item:focus,.amarelo .item:hover,.botao.amarelo:focus,.botao.amarelo:hover{background-color:var(--amarelo-escuro);border-color:var(--amarelo-escuro)}.verde .item:focus,.verde .item:hover,.botao.verde:focus,.botao.verde:hover{background-color:var(--verde-escuro);border-color:var(--verde-escuro)}.azul .item:focus,.azul .item:hover,.botao.azul:focus,.botao.azul:hover{background-color:var(--azul-escuro);border-color:var(--azul-escuro)}.roxo .item:focus,.roxo .item:hover,.botao.roxo:focus,.botao.roxo:hover{background-color:var(--roxo-escuro);border-color:var(--roxo-escuro)}.rosa .item:focus,.rosa .item:hover,.botao.rosa:focus,.botao.rosa:hover{background-color:var(--rosa-escuro);border-color:var(--rosa-escuro)}.cinza .item:focus,.cinza .item:hover,.botao.cinza:focus,.botao.cinza:hover{background-color:var(--cinza-escuro);border-color:var(--cinza-escuro);color:var(--preto)}
 
 /* bordas */
 
@@ -669,8 +670,8 @@ nav.menu.vertical .marca{
 }
 
 .cartao.com-imagem .card-content .cartao-footer{
-  -webkit-box-flex: 1;
-          flex: 1;
+  /* -webkit-box-flex: 1;
+          flex: 1; */
   display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
