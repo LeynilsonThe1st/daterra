@@ -19,7 +19,8 @@ const revelarModal = modal => {
     }, 200);
     // fecha o modal e o usuario clicar fora dele
     modal.addEventListener("click", e => {
-        if (e.target.classList[0] == "modal-layer" ||
+        if (
+            e.target.classList[0] == "modal-layer" ||
             e.target.parentNode.classList[0] == "modal-layer"
         ) {
             ocultarModal(modal);
@@ -33,14 +34,14 @@ const ocultarModal = modal => {
     }, 200);
 };
 
-const addLoader = () => {
+const addLoader = (el = "#pacotes", txt = "os pacotes") => {
     if (!document.querySelector("#Ploader")) {
         var preloaderHTML = `
             <div id="Ploader">
-                <span class="texto-forte mr-15">A carregar os pacotes</span>
+                <span class="texto-forte mr-15">A carregar ${txt}</span>
                 <img src="/img/loader.svg" class="svg spin" alt="loader">
             </div>`;
-        document.querySelector("#pacotes").innerHTML += preloaderHTML;
+        document.querySelector(el).innerHTML += preloaderHTML;
     }
 };
 const removeLoader = () => {
@@ -49,18 +50,24 @@ const removeLoader = () => {
         preloader.remove();
     }
 };
-const ajaxResponse = (response, pacotes) => {
-    var c = pacotes.lenght;
-    var options = [];
+const servicosHandler = (response, pacotes) => {
+    let options = [];
     for (let pacote of response.pacotes) {
-        let option = `<option value="${c}">${pacote}</option>`
-        pacotes.innerHTML += option;
+        let option = `<option value="${options.length + 1}">${pacote}</option>`;
         options.push(option);
+        pacotes.innerHTML += option;
     }
     removeLoader();
     pacotes.style.display = "block";
+};
 
-}
+const solicitacaoHandler = resposta => {
+    let msg = resposta.msg;
+    document.querySelector("#msg").innerHTML = `
+    <p class="texto-forte grande texto-verde pv-20">${msg}</p>
+    `;
+    removeLoader();
+};
 
 // executa o codigo abaixo apenas quando o DOM carregar
 // Sem esperar pelo css e imagens
@@ -73,6 +80,7 @@ window.addEventListener("load", () => {
         botaoCalcular = document.querySelector("#calcular"),
         botaoVerServicos = document.querySelector("#ver-servicos"),
         botaoSolicitarServico = document.querySelectorAll(".solicitar-servico"),
+        botaoSolicitar = document.querySelector("#solicitar"),
         menu = document.querySelector(".menu");
 
     // Revela e oculta os links do menu
@@ -98,7 +106,6 @@ window.addEventListener("load", () => {
         ajaxRequest(form); // Faz o request para o servidor usando Ajax
 
         // fecha o modal se o usuario clicar no "#fechar-modal"
-
     });
 
     botaoFecharModal.forEach(btnFechar => {
@@ -124,6 +131,7 @@ window.addEventListener("load", () => {
         btnServico.addEventListener("click", e => {
             e.preventDefault();
             addLoader();
+
             let cartaoDoservico =
                     e.target.parentNode.parentNode.parentNode.parentNode,
                 imgDoServico = cartaoDoservico.querySelector("img"),
@@ -134,26 +142,30 @@ window.addEventListener("load", () => {
 
             modalImg.src = imgDoServico.src;
             modalTitulo.innerText = tituloDoservico.innerText;
-            var len = modalPacotes.length,
-                c = 0;
+            let codServiso = e.target.previousElementSibling.value;
+            modalPacotes.previousElementSibling.value = codServiso;
+            var len = modalPacotes.length;
             while (len > 1) {
-                console.log(modalPacotes.options);
                 modalPacotes.children.item(len - 1).remove();
-                if (c > 3) {
-                    console.log(c);
-                    break;
-                }
-                c++;
+                len--;
             }
-            modalPacotes.style.display = "none"
+            modalPacotes.style.display = "none";
+            document.querySelector("#msg").innerHTML = " ";
             revelarModal(modalServico);
 
             ajaxRequest(e.target.form, response => {
-                ajaxResponse(response.target.response, modalPacotes);
+                servicosHandler(response.target.response, modalPacotes);
             });
         });
     });
 
+    botaoSolicitar.addEventListener("click", e => {
+        e.preventDefault();
+        addLoader("#msg", "o seu pedido")
+        ajaxRequest(e.target.form, response => {
+            solicitacaoHandler(response.target.response);
+        });
+    });
 });
 window.addEventListener("scroll", () => {
     let nav = document.querySelector(".menu"),

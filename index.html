@@ -157,7 +157,7 @@
         quis, et repudiandae dolorem maiores nulla fugiat placeat.</p>
       <div class="cartao sem-borda mt-40">
         <div class="cartao-conteudo p-0">
-          <form action="http://localhost:8000/api/servicos.php" method="POST" class="formulario" id="calc">
+          <form action="http://localhost:8000/api" method="POST" class="formulario" id="calc">
             <div class="campo-em-linha">
               <div class="campo mb-0">
                 <select name="moeda1" id="moeda1">
@@ -232,7 +232,7 @@
             </div>
             <div class="cartao-footer sem-borda pt-0">
               <form action="http://localhost:8000/api/servicos.php" method="POST">
-                <input type="hidden" name="cod-servico" value="6">
+                <input type="hidden" name="cod-servico" value="1">
                 <button class="botao daterra m-0 pequeno solicitar-servico">
                   Solicitar serviços
                 </button>
@@ -322,7 +322,7 @@
           </div>
           <div class="card-content flex-9">
             <div class="cartao-conteudo">
-              <h3 class="cartao-titulo">Carregamento Net Teller</h3>
+              <h3 class="cartao-titulo">Pagamento Spotify</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo culpa ipsa accusantium debitis.</p>
             </div>
             <div class="cartao-footer sem-borda pt-0">
@@ -351,9 +351,9 @@
             </div>
             <div class="card-content flex-9">
               <div class="cartao-conteudo">
-                <h3 class="cartao-titulo" id="servico-nome"></h3>
-                <form action="http://localhost:8000" class="pt-20" method="POST">
 
+                <h3 class="cartao-titulo" id="servico-nome"></h3>
+                <form action="http://localhost:8000/api/solicitar.php" class="pt-20" method="POST">
                   <div class="campo-em-linha">
                     <div class="campo">
                       <input type="text" name="nome" id="nome" placeholder="Seu Nome">
@@ -363,17 +363,20 @@
                     </div>
                   </div>
                   <div class="campo" id="pacotes">
+                    <input type="hidden" name="cod-servico">
                     <select name="pacote" id="pacote">
                       <option value="">Seleccione o pacote do serviço</option>
                     </select>
                   </div>
                   <div class="campo">
                     <textarea name="descricao" id="descricao" rows="5"
-                      placeholder="Uma pequena descrição do serviço que deseja obter">
-                    </textarea>
+                      placeholder="Uma pequena descrição do serviço que deseja obter"></textarea>
                   </div>
-                  <button class="botao daterra" id="solicitar">Solicitar</button>
-                  <button type="reset" class="botao vermelho fechar-modal">cancelar</button>
+                  <div id="msg"></div>
+                  <div class="horizontal mt-20">
+                    <button class="botao block daterra mr-20" id="solicitar">Solicitar</button>
+                    <button type="reset" class="botao vermelho fechar-modal">cancelar</button>
+                  </div>
                 </form>
               </div>
             </div>

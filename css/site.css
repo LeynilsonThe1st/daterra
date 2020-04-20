@@ -194,10 +194,10 @@ a[title="Twitter"]:focus {color: var(--azul)}
   opacity: 1;
   /* display: flex !important; */
 }
-
+/* 
 #modal-servico button[type="reset"] {
   float: right;
-}
+} */
 
 #preloader {
   display: flex;

@@ -18,7 +18,7 @@ const removePreloader = () => {
 };
 const sucesso = response => {
     console.log(response);
-    // document.querySelector("#resultado").innerHTML = response.texto;
+    document.querySelector("#resultado").innerHTML = response.texto;
 };
 const ajaxRequest = (oFormElement, callback = null) => {
     if (!oFormElement.action) {
