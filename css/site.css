@@ -194,10 +194,10 @@ a[title="Twitter"]:focus {color: var(--azul)}
   opacity: 1;
   /* display: flex !important; */
 }
-/* 
-#modal-servico button[type="reset"] {
-  float: right;
-} */
+
+.centrar {
+  justify-content: center;
+}
 
 #preloader {
   display: flex;
@@ -281,6 +281,8 @@ a[title="Twitter"]:focus {color: var(--azul)}
   .five.cts {width: 50%;padding-bottom: 40px}
   .three.rds {float: left !important;width: 200px;padding-bottom: 20px}
   .subscrever .nine.colunas {width: 90%}
+  #coment-form .eight.colunas{width: 100%}
+  .campo-em-linha {gap: 0px}
 }
 @media only screen and (max-width: 770px) {
   header {
@@ -297,14 +299,15 @@ a[title="Twitter"]:focus {color: var(--azul)}
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     flex-direction: column;
-    gap: 20px
+    /* gap: 20px */
   }
-  .campo-em-linha .campo {padding-bottom: 20px}
+  .campo-em-linha .campo {padding-bottom:20px; margin-bottom:0px}
   .four.crt {width: 100%;padding-bottom: 40px}
   .five.cts {width: 100%;padding-bottom: 40px}
   .subscrever label {margin-bottom: 20px}
   .grelha {grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))}
   .modal-layer .eight.colunas{width:100%}
+
 }
 @media only screen and (max-width: 690px) {
   .titulo.grande {font-size: 3em}
@@ -333,6 +336,10 @@ a[title="Twitter"]:focus {color: var(--azul)}
     width: 100%;
     padding-left: 10px !important;
     padding-right: 10px !important;
+  }
+  #coment-form .linha{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
   .grelha {grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))}
   .colunas {padding-left: 0px !important;padding-right: 0px !important}
