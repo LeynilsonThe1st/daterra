@@ -35,16 +35,16 @@ const ocultarModal = modal => {
 };
 /**
  * Adciona o loader no elemento especificado
- * se nenhum elemento for inserido, vai inserir no elemento #pacotes
+ * se nenhum elemento for inserido, vai dar um erro elemento não encontrado
  *
  * @param {string} el - id do elemento a colocar o loader
  * @param {string} txt - texto adicional do loader
  */
-const addLoader = (el = "#pacotes", txt = "os pacotes") => {
+const addLoader = (el, txt = "A carregar") => {
     if (!document.querySelector("#Ploader")) {
         var preloaderHTML = `
             <div id="Ploader">
-                <span class="texto-forte mr-15">A carregar ${txt}</span>
+                <span class="texto-forte mr-15">${txt}</span>
                 <img src="/img/loader.svg" class="svg spin" alt="loader">
             </div>`;
         document.querySelector(el).innerHTML += preloaderHTML;
@@ -87,6 +87,7 @@ window.addEventListener("load", () => {
         botaoVerServicos = document.querySelector("#ver-servicos"),
         botaoSolicitarServico = document.querySelectorAll(".solicitar-servico"),
         botaoSolicitar = document.querySelector("#solicitar"),
+        botaoComentar = document.querySelector("#comentar"),
         menu = document.querySelector(".menu");
 
     // Revela e oculta os links do menu
@@ -135,7 +136,7 @@ window.addEventListener("load", () => {
     botaoSolicitarServico.forEach(btnServico => {
         btnServico.addEventListener("click", e => {
             e.preventDefault();
-            addLoader(); // add o loader quando o modal abrir
+            addLoader("#pacotes", "A carregar pacotes"); // add o loader quando o modal abrir
 
             // cartão do servico selecionado
             let cartaoDoservico =
@@ -179,12 +180,31 @@ window.addEventListener("load", () => {
     // Este botão esta dentro do modal
     botaoSolicitar.addEventListener("click", e => {
         e.preventDefault();
-        addLoader("#msg", "o seu pedido"); // add o loader quando o botão for clicado
+        addLoader("#msg", "A carregar o seu pedido"); // add o loader quando o botão for clicado
         ajaxRequest(e.target.form, response => {
             // função que recebe a resposta do servidor
             solicitacaoHandler(response.target.response);
         });
     });
+
+    botaoComentar.addEventListener("click", e => {
+        e.preventDefault();
+        addLoader("#cmt", " ") // string vazia para não mostrar nenhum aviso enquanto carrega
+        // As funcoes setTimeout podem ser removida
+        // Uso apenas para dar vida ao botao
+        setTimeout(() => {
+            removeLoader(); // aqui eu removo o loader, depois de 3s
+            document.querySelector("#cmt").innerHTML += `
+            <p class="fade-in texto-verde texto-forte ml-20" id="cmt-msg">O seu comentário foi envido.</p>
+            `
+        }, 3000);
+        setTimeout(() => {
+            document.querySelector("#cmt-msg").classList.add("fade-out")
+            document.querySelector("#cmt-msg").classList.remove("fade-in")
+        }, 14000)
+        setTimeout(() => document.querySelector("#cmt-msg").remove(), 15000);
+    })
+
 });
 window.addEventListener("scroll", () => {
     let nav = document.querySelector(".menu"),

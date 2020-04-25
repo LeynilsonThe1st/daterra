@@ -219,6 +219,21 @@ a[title="Twitter"]:focus {color: var(--azul)}
   -webkit-animation: spin 1s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
   animation: spin 1s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+.fade-out{
+  animation: fade-out 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.fade-in{
+  animation: fade-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes fade-out {
+  from {opacity: 1}
+  to {opacity: 0}
+}
+@keyframes fade-in {
+  from { opacity: 0}
+  to {opacity: 1}
+}
 
 @-webkit-keyframes spin {
   0% {
@@ -341,7 +356,8 @@ a[title="Twitter"]:focus {color: var(--azul)}
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
-  .grelha {grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))}
+  .srvcs {margin-bottom: 0 !important}
+  .grelha {grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important}
   .colunas {padding-left: 0px !important;padding-right: 0px !important}
   .subscrever .nine.colunas {width: 100%}
 }
